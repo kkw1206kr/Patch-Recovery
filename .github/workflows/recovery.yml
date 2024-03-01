@@ -28,8 +28,9 @@ jobs:
         ls
         pwd
         wget ${{github.event.inputs.RECOVERY_URL }}
-        echo -n "Enter the URL's File Name > "
-        mv ${{github.event.inputs.RECOVERY_URL }:15} recovery.img
+        url=${{github.event.inputs.RECOVERY_URL }}
+        echo "${url:15}"
+        mv ${url:15} recovery.img
 
     - name: Patch Process-1
       run: |
