@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       RECOVERY_URL:
-        description: 'RECOVERY URL'
+        description: 'RECOVERY URL(File.io is Default URL)'
         required: true
-        default: 'https://transfer.sh/(RECOMMENDED)'
+        default: 'https://file.io/'
 
 env:
   RECOVERY_URL: https://oshi.at/Rpjg
@@ -28,7 +28,8 @@ jobs:
         ls
         pwd
         wget ${{github.event.inputs.RECOVERY_URL }}
-        mv ADwELxSYtBf3 recovery.img
+        URL=${{github.event.inputs.RECOVERY_URL }}
+        mv ${URL:16} recovery.img
 
     - name: Patch Process-1
       run: |
